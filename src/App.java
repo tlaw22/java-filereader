@@ -18,7 +18,6 @@ public class App {
         } catch (FileNotFoundException e) {
             System.out.println("File was not found!");
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
             System.out.println("Problem reading the file " + file.getName());
         } finally {
