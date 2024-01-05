@@ -5,12 +5,13 @@ public class App {
 
         File file = new File("myfile.txt");
         BufferedReader reader = null;
+        FileReader fileReader = null;
         try {
-            FileReader fileReader = new FileReader(file);
+            fileReader = new FileReader(file);
             reader = new BufferedReader(fileReader);
 
             String line = reader.readLine();
-            while(line != null) {
+            while (line != null) {
                 System.out.println(line);
                 line = reader.readLine();
             }
@@ -21,13 +22,17 @@ public class App {
             e.printStackTrace();
             System.out.println("Problem reading the file " + file.getName());
         } finally {
-             try {
-                reader.close();
+            try {
+                if (reader != null) {
+                    reader.close();
+                }
+                if (fileReader != null) {
+                    fileReader.close();
+                }
+                
             } catch (IOException e) {
                 System.out.println("Unable to close file" + file.getName());
                 e.printStackTrace();
-            } catch (NullPointerException ex) {
-                System.out.println("The file was not opened correctly" + ex);
             }
         }
     }
